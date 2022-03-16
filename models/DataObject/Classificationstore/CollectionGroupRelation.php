@@ -54,10 +54,25 @@ class CollectionGroupRelation extends Model\AbstractModel
      */
     public static function create()
     {
-        $config = new self();
-        $config->save();
+        return new self();
+    }
 
-        return $config;
+    /**
+     * @param int|null $groupId
+     * @param int|null $colId
+     *
+     * @return self|null
+     */
+    public static function getByGroupAndColId($groupId = null, $colId = null)
+    {
+        try {
+            $config = new self();
+            $config->getDao()->getById((int)$colId, (int)$groupId);
+
+            return $config;
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     /**
