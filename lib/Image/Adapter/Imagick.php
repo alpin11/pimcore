@@ -478,11 +478,7 @@ class Imagick extends Adapter
 
             // only use the calculated resolution if we need a higher one that the one we got from the metadata (getImageResolution)
             // this is because sometimes the quality is much better when using the "native" resolution from the metadata
-            if ($newRes['x'] > $res['x'] && $newRes['y'] > $res['y']) {
-                $this->resource->setResolution($newRes['x'], $newRes['y']);
-            } else {
-                $this->resource->setResolution($res['x'], $res['y']);
-            }
+            $this->resource->setResolution(2000, 2000);
 
             $this->resource->readImage($this->imagePath);
 
